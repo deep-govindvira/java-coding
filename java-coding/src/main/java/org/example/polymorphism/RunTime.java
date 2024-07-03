@@ -18,3 +18,15 @@ class Cat extends Animal {
     }
 }
 
+public class RunTime {
+    public static void main(String[] args) {
+        Animal myAnimal;
+
+        myAnimal = new Dog();
+        myAnimal.sound(); // Outputs: Dog barks
+
+        myAnimal = new Cat();
+        myAnimal.sound(); // Outputs: Cat meows
+    }
+}
+
