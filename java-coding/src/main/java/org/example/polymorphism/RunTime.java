@@ -7,12 +7,14 @@ class Animal {
 }
 
 class Dog extends Animal {
+    @Override
     void sound() {
         System.out.println("Dog barks");
     }
 }
 
 class Cat extends Animal {
+    @Override
     void sound() {
         System.out.println("Cat meows");
     }
@@ -20,13 +22,13 @@ class Cat extends Animal {
 
 public class RunTime {
     public static void main(String[] args) {
-        Animal myAnimal;
+        Animal animal;
 
-        myAnimal = new Dog();
-        myAnimal.sound(); // Outputs: Dog barks
+        animal = new Dog();
+        animal.sound(); // Outputs: Dog barks
 
-        myAnimal = new Cat();
-        myAnimal.sound(); // Outputs: Cat meows
+        animal = new Cat();
+        animal.sound(); // Outputs: Cat meows
     }
 }
 
