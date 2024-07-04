@@ -4,15 +4,15 @@ import java.io.*;
 import java.net.*;
 public class Server {
     public static void main(String[] args){
-        try {
+        try{
             ServerSocket serverSocket = new ServerSocket(6666);
 
-            Socket socket = serverSocket.accept();
+            Socket socket = serverSocket.accept(); //establishes connection
 
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
 
             String message = (String) dataInputStream.readUTF();
-            System.out.println(message);
+            System.out.println("message = " + message);
 
             serverSocket.close();
         } catch(Exception e) {
@@ -20,3 +20,4 @@ public class Server {
         }
     }
 }
+
