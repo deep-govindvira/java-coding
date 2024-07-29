@@ -24,9 +24,8 @@ class Car {
 
 public class AggregationExample {
     public static void main(String[] args) {
-        Engine engine = new Engine();
         // Car has an Engine, but the Engine can exist independently of the Car'
-        Car car = new Car(engine);
+        Car car = new Car(new Engine());
         car.startCar();
     }
 }
