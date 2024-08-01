@@ -2,6 +2,7 @@ package org.example.sqlite;
 
 import java.sql.DriverManager;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -13,33 +14,43 @@ public class SQLiteConnection {
     private static void connectSQLite() {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:database.db");
-            System.out.println("Connected to the database.");
+            println("Connected to the database.");
         } catch (SQLException e) {
-            System.out.println(e.getMessage()); // Handle exception appropriately
+            println(e.getMessage());
         }
     }
 
-    public static void create(String createTableSQL) {
+    public static void create(String createSQL) {
         if(connection == null)  connectSQLite();
         if(connection != null) {
-            // Create the table
             try (Statement statement = connection.createStatement()) {
-                statement.execute(createTableSQL);
-                System.out.println("Table created successfully.");
+                statement.execute(createSQL);
+                println("Table created successfully.");
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+                println(e.getMessage());
             }
         }
     }
     public static void insert(String insertSQL) {
         if(connection == null) connectSQLite();
         if(connection != null) {
-            // Insert data into the table
             try (Statement statement = connection.createStatement()) {
                 statement.execute(insertSQL);
-                System.out.println("Data inserted successfully.");
+                println("Data inserted successfully.");
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+                println(e.getMessage());
+            }
+        }
+    }
+
+    public static void update(String updateSql) {
+        if(connection == null) connectSQLite();
+        if(connection != null) {
+            try (Statement statement = connection.createStatement()) {
+                statement.execute(updateSql);
+                println("Data updated successfully.");
+            } catch (SQLException e) {
+                println(e.getMessage());
             }
         }
     }
@@ -49,28 +60,41 @@ public class SQLiteConnection {
         if(connection != null) {
             try {
                 Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery(selectSql);
+                statement.execute(selectSql);
+                ResultSet resultSet = statement.getResultSet();
 
                 // Get metadata to retrieve column names
-                ResultSetMetaData metaData = resultSet.getMetaData();
-                int columnCount = metaData.getColumnCount();
+                ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+                int columnCount = resultSetMetaData.getColumnCount();
+
+                println("columnCount : " + resultSetMetaData.getColumnCount());
+                println("columnName : " + resultSetMetaData.getColumnName(1));
+                println("columnLabel : " + resultSetMetaData.getColumnLabel(1));
+                println("columnType : " + resultSetMetaData.getColumnType(1));
+                println("columnTypeName : " + resultSetMetaData.getColumnTypeName(1));
+                println("columnClassName : " + resultSetMetaData.getColumnClassName(1));
+                println("tableName : " + resultSetMetaData.getTableName(1));
+                println("schemaName : " + resultSetMetaData.getSchemaName(1));
+                println("class : " + resultSetMetaData.getClass());
+
+
 
                 // Print column names
                 for (int i = 1; i <= columnCount; i++) {
-                    System.out.print(metaData.getColumnName(i) + "\t");
+                    System.out.print(resultSetMetaData.getColumnName(i) + "\t");
                 }
                 System.out.println();
 
                 // Print rows
                 while (resultSet.next()) {
                     for (int i = 1; i <= columnCount; i++) {
-                        System.out.print(resultSet.getString(i) + "\t");
+                        println(resultSet.getString(i) + "\t");
                     }
-                    System.out.println();
+                    println("");
                 }
             }
             catch (SQLException e) {
-                System.out.println(e.getMessage());
+                println(e.getMessage());
             }
         }
     }
@@ -78,13 +102,20 @@ public class SQLiteConnection {
     public static void drop(String dropSQL) {
         if(connection == null)  connectSQLite();
         if(connection != null) {
-            // Drop the table
             try (Statement statement = connection.createStatement()) {
                 statement.execute(dropSQL);
-                System.out.println("Table dropped successfully.");
+                println("Table dropped successfully.");
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+                println(e.getMessage());
             }
         }
+    }
+
+    private static void print(String string) {
+        System.out.println(string);
+    }
+
+    private static void println(String string) {
+        System.out.println(string);
     }
 }

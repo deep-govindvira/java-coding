@@ -12,12 +12,8 @@ public class LambdaExample {
     }
 
     public static void main(String[] args) {
-        Function add = (Double a, Double b) -> {
-            return a + b;
-        };
+        Function add = (a, b) -> a + b;
         System.out.println(add.operation(3.0, 5.0));
-        System.out.println(calculate((Double a, Double b) -> {
-            return a + b;
-            }, 3.0, 5.0));
+        System.out.println(calculate((a, b) -> a + b, 3.0, 5.0));
     }
 }

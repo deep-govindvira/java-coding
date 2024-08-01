@@ -6,14 +6,10 @@ public class Server {
     public static void main(String[] args){
         try{
             ServerSocket serverSocket = new ServerSocket(6666);
-
             Socket socket = serverSocket.accept(); //establishes connection
-
             DataInputStream dataInputStream = new DataInputStream(socket.getInputStream());
-
             String message = (String) dataInputStream.readUTF();
             System.out.println("message = " + message);
-
             serverSocket.close();
         } catch(Exception e) {
             System.out.println(e);
