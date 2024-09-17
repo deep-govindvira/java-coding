@@ -100,7 +100,8 @@ public class Dao {
 
     public static void main(String[] args) {
         Dao.save(new Student("Dhiraj"));
-        Dao.save(new Student("Dhiraj"));
+        Dao.save(new Student("Dhiraj" +
+            ""));
         Dao.delete(new Student("Deep"));
         Dao.save(new Student("Deep"));
         Dao.save(new Student("No Student"));

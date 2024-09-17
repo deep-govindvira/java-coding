@@ -1,7 +1,11 @@
 package org.example.collections;
 
+import h._xdot_op;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 public class ArrayListExample {
     public static void main(String[] args) {
@@ -11,6 +15,10 @@ public class ArrayListExample {
         list.add("Banana");
         list.add("Cherry");
         list.add(1, "Blueberry");
+
+        for (String string : list) {
+            System.out.println(string);
+        }
 
         System.out.println("First element: " + list.get(0));
         System.out.println("Second element: " + list.get(1));
