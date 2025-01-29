@@ -77,4 +77,16 @@ class LRUCache<K, V> {
         removeNode(lru);
         return lru;
     }
+
+    public static void main(String[] args) {
+        LRUCache<Integer, String> lru = new LRUCache<>(3);
+        lru.put(1, "One");
+        lru.put(2, "Two");
+        lru.put(3, "Three");
+        System.out.println(lru.get(2)); // Two
+        lru.put(4, "Four"); // Evicts key 1
+        System.out.println(lru.get(1)); // null (Not found)
+        lru.put(5, "Five"); // Evicts key 3
+        System.out.println(lru.get(3)); // null (Not found)
+    }
 }
