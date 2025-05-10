@@ -18,7 +18,7 @@ class Dog implements Animal {
     // Providing implementation for the abstract method
     @Override
     public void makeSound() {
-        System.out.println("Bark");
+        System.out.println("Bark" + x);
     }
 
     // The eat() method can be used as it is from the interface or overridden if needed

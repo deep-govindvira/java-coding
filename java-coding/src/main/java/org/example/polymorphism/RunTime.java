@@ -11,6 +11,7 @@ class Dog extends Animal {
     void sound() {
         System.out.println("Dog barks");
     }
+    void run() {}
 }
 
 class Cat extends Animal {
@@ -26,6 +27,7 @@ public class RunTime {
 
         animal = new Dog();
         animal.sound(); // Outputs: Dog barks
+        // animal cant run though dog can run
 
         animal = new Cat();
         animal.sound(); // Outputs: Cat meows
