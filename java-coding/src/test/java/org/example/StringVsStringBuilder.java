@@ -19,7 +19,8 @@ public class StringVsStringBuilder {
         String s3 = new String("value1");
         String s2 = new String("value1");
         for (int i = 0; i < 100000; i++) {
-            s3 = s3 + s2;
+            s3 += s2;
+//            s3.concat(s2);
         }
         System.out.println(s3);
     }

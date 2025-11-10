@@ -2,10 +2,7 @@ package org.example.collections;
 
 import h._xdot_op;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class ArrayListExample {
     public static void main(String[] args) {
